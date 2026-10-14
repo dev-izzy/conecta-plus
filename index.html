@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural | Conecta+</title>
+    <meta name="description" content="Conecta e + um pouco: encontre e ofereça serviços na sua comunidade, converse com amigos e monte seu perfil de prestador de serviços.">
+    <meta name="theme-color" content="#004C94">
+    <link rel="icon" href="ico/download.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <meta property="og:title" content="Conecta e + um pouco">
+    <meta property="og:description" content="Encontre ou ofereça serviços na sua comunidade.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="global-loading" id="globalLoading" role="progressbar" aria-label="Carregando" aria-hidden="true"><span></span></div>
+    <script src="js/loading.js"></script>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <nav class="facebook-nav" aria-label="Navegação do mural">
+        <a class="facebook-brand" href="index.html" aria-label="Página inicial"><img class="facebook-brand-image" src="img/download.jpg" alt="">Conecta<span>+</span></a>
+
+        <label class="facebook-search" for="muralSearch">
+            <span aria-hidden="true">⌕</span>
+            <input id="muralSearch" type="search" placeholder="Pesquisar serviços" autocomplete="off">
+        </label>
+
+        <div class="facebook-links">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema claro/escuro">
+                <span class="toggle-circle">🌙</span>
+            </button>
+
+            <a class="facebook-link active" href="index.html">Início</a>
+            <a class="facebook-link" href="amigos.html">Amigos</a>
+
+            <div class="user-icon" id="userIcon" title="Perfil do Usuário" role="button" tabindex="0" aria-haspopup="menu" aria-expanded="false">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="20" cy="12" r="8" fill="white"/>
+                    <path d="M 6 32 Q 6 22 20 22 Q 34 22 34 32" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+                </svg>
+                <div class="user-menu" id="userMenu" role="menu">
+                    <a id="profileMenuLink" href="usuario.html" role="menuitem">Meu Perfil</a>
+                    <a href="#" id="openSettings" role="menuitem">Configurações</a>
+                    <a href="#" id="openLogin" role="menuitem">Entrar</a>
+                    <a href="#" id="openRegister" role="menuitem">Criar cadastro</a>
+                    <a href="#" id="logoutLink" role="menuitem">Sair</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Conecta e + um pouco</h1>
+        <p>Encontre, ofereça e compartilhe serviços na sua comunidade</p>
+    </header>
+
+    <main id="conteudo">
+        <div class="mural-intro">
+            <div>
+                <span class="mural-eyebrow">Seu mural de serviços</span>
+                <h2>Encontre ou ofereça algo novo</h2>
+                <p class="mural-lead">Busque o que voce precisa ou publique o que sabe fazer. Conecte-se com sua comunidade.</p>
+            </div>
+            <a class="publish-shortcut" href="usuario.html">Publicar um serviço</a>
+        </div>
+
+        <p class="mural-empty-search" id="muralEmptySearch" hidden>Nenhum serviço encontrado para essa busca.</p>
+
+        <div class="carousels-wrapper mural-boards">
+            <section class="mural-section" aria-labelledby="title-buscar">
+                <h2 class="section-title" id="title-buscar">Buscar serviços</h2>
+                <p class="section-hint">Pedidos da comunidade — o que as pessoas estão procurando.</p>
+                <div class="mural-grid" id="grid-buscar"></div>
+            </section>
+
+            <section class="mural-section" aria-labelledby="title-oferecer">
+                <h2 class="section-title" id="title-oferecer">Oferecer serviços</h2>
+                <p class="section-hint">Prestadores disponíveis, incluindo as suas publicações.</p>
+                <div class="mural-grid" id="grid-oferecer"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p><strong>Conecta+</strong> · Encontre e ofereça serviços na sua comunidade</p>
+    </footer>
+
+    <div class="modal-overlay" id="serviceModal" aria-hidden="true">
+        <div class="register-modal" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+            <button class="modal-close" id="closeService" type="button" aria-label="Fechar detalhes">&times;</button>
+            <p class="eyebrow" id="serviceModalCategory"></p>
+            <h2 id="serviceModalTitle"></h2>
+            <p id="serviceModalMeta" class="muted-copy"></p>
+            <div id="serviceModalDetails" class="service-modal-details"></div>
+            <p id="serviceModalDescription"></p>
+            <a class="register-submit service-modal-cta" id="serviceModalCta" href="usuario.html">Ver mural e publicar</a>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="registerModal" aria-hidden="true">
+        <div class="register-modal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+            <button class="modal-close" id="closeRegister" type="button" aria-label="Fechar cadastro">&times;</button>
+            <h2 id="registerTitle">Criar cadastro</h2>
+            <p>Preencha seus dados para participar do Conecta.</p>
+            <form id="registerForm">
+                <label for="registerName">Nome completo</label>
+                <input id="registerName" name="name" type="text" autocomplete="name" required>
+
+                <label for="registerEmail">E-mail</label>
+                <input id="registerEmail" name="email" type="email" autocomplete="email" required>
+
+                <label for="registerPassword">Senha</label>
+                <input id="registerPassword" name="password" type="password" minlength="6" autocomplete="new-password" required>
+
+                <label for="registerPasswordConfirmation">Confirme sua senha</label>
+                <input id="registerPasswordConfirmation" name="passwordConfirmation" type="password" minlength="6" autocomplete="new-password" required>
+
+                <p class="form-message" id="registerMessage" role="alert"></p>
+                <button class="register-submit" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="loginModal" aria-hidden="true">
+        <div class="register-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="modal-close" id="closeLogin" type="button" aria-label="Fechar login">&times;</button>
+            <h2 id="loginTitle">Entrar</h2>
+            <p>Acesse sua conta do Conecta com seu Gmail ou e-mail e senha.</p>
+            <form id="loginForm">
+                <label for="loginEmail">Gmail ou e-mail</label>
+                <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="voce@gmail.com" required>
+
+                <label for="loginPassword">Senha</label>
+                <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+
+                <p class="form-message" id="loginMessage" role="alert"></p>
+                <button class="register-submit" type="submit">Entrar</button>
+                <p class="settings-account-hint">Ainda não tem conta? <a href="#" id="switchToRegister">Criar cadastro</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="settingsModal" aria-hidden="true">
+        <div class="register-modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+            <button class="modal-close" id="closeSettings" type="button" aria-label="Fechar configurações">&times;</button>
+            <h2 id="settingsTitle">Configurações</h2>
+            <p>Ajuste sua conta e a aparência do Conecta.</p>
+
+            <div class="settings-section">
+                <h3>Aparência</h3>
+                <label class="settings-switch">
+                    <input type="checkbox" id="settingsThemeToggle">
+                    <span>Usar tema escuro</span>
+                </label>
+            </div>
+
+            <form id="settingsForm">
+                <div class="settings-section">
+                    <h3>Conta</h3>
+                    <p class="form-message" id="settingsAccountHint"></p>
+                    <label for="settingsEmail">E-mail</label>
+                    <input id="settingsEmail" name="email" type="email" placeholder="seuemail@exemplo.com">
+                </div>
+
+                <p class="form-message" id="settingsMessage" role="status"></p>
+                <button class="register-submit" type="submit">Salvar configurações</button>
+            </form>
+
+            <div class="settings-section settings-danger-zone">
+                <h3>Zona de risco</h3>
+                <p class="settings-danger-text">Isso apaga cadastro, perfil, publicações, amigos e mensagens deste navegador. Não pode ser desfeito.</p>
+                <button class="danger-button" id="deleteAccountButton" type="button" hidden>Apagar meus dados</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/backend-config.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/mural.js"></script>
+    <script src="js/pwa.js"></script>
+</body>
+</html>

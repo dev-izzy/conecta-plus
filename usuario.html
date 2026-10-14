@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu espaço | Conecta e + um pouco</title>
+    <meta name="description" content="Seu espaço no Conecta: publique serviços, personalize seu perfil e acompanhe o mural da comunidade.">
+    <meta name="theme-color" content="#004C94">
+    <link rel="icon" href="ico/download.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="social-page">
+    <div class="global-loading" id="globalLoading" role="progressbar" aria-label="Carregando" aria-hidden="true"><span></span></div>
+    <script src="js/loading.js"></script>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <nav class="social-nav" aria-label="Navegação principal">
+        <a class="brand-link" href="index.html"><img class="facebook-brand-image" src="img/download.jpg" alt="">Conecta<span>+</span></a>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema claro/escuro">
+                <span class="toggle-circle">🌙</span>
+            </button>
+            <a class="nav-home" href="index.html">Voltar ao mural</a>
+            <a class="nav-home" href="amigos.html">Amigos</a>
+            <button class="profile-avatar mini-avatar" id="navAvatar" type="button" aria-label="Abrir personalização do perfil">U</button>
+        </div>
+    </nav>
+
+    <main class="social-layout" id="conteudo">
+        <p class="login-banner" id="loginBanner" hidden>
+            Você ainda não entrou. <a href="index.html">Cadastre-se ou entre no mural</a> para publicar serviços com o seu nome.
+        </p>
+        <section class="profile-hero" aria-labelledby="profileName">
+            <div class="profile-cover"></div>
+            <div class="profile-main">
+                <button class="profile-avatar profile-avatar-large" id="profileAvatar" type="button" aria-label="Alterar foto do perfil" disabled>U</button>
+                <div class="profile-data">
+                    <p class="profile-kicker">Seu espaço no Conecta</p>
+                    <h1 id="profileName">Seu nome</h1>
+                    <p id="profileBio">Conte para a comunidade quais serviços você oferece.</p>
+                    <div class="profile-stats">
+                        <span><strong id="postCount">0</strong> publicações</span>
+                        <span><strong id="commentCount">0</strong> comentários</span>
+                    </div>
+                </div>
+                <button class="outline-button" id="editProfileButton" type="button" hidden>Personalizar perfil</button>
+                <button class="outline-button" id="friendRequestButton" type="button" hidden>Solicitar amizade</button>
+            </div>
+        </section>
+
+        <section class="panel post-composer request-composer" aria-labelledby="requestTitle">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">Precisa de uma ajuda?</p>
+                    <h2 id="requestTitle">Publique um pedido de servi&ccedil;o</h2>
+                    <p class="muted-copy">Conte o que voc&ecirc; precisa. A comunidade pode responder nos coment&aacute;rios.</p>
+                </div>
+            </div>
+            <form id="requestForm">
+                <label for="requestTitleInput">Qual servi&ccedil;o voc&ecirc; precisa?</label>
+                <input id="requestTitleInput" name="title" type="text" placeholder="Ex.: Preciso de um eletricista" required>
+                <label for="requestCategory">Categoria</label>
+                <select id="requestCategory" name="category">
+                    <option>Servi&ccedil;os gerais</option>
+                    <option>Beleza</option>
+                    <option>Tecnologia</option>
+                    <option>Casa e manuten&ccedil;&atilde;o</option>
+                    <option>Aulas e consultoria</option>
+                    <option>Artesanato e cria&ccedil;&atilde;o</option>
+                </select>
+                <label for="requestDescription">D&ecirc; mais detalhes</label>
+                <textarea id="requestDescription" name="description" rows="3" placeholder="Explique o que voc&ecirc; precisa e quando..." required></textarea>
+                <div class="form-grid">
+                    <div>
+                        <label for="requestLocation">Cidade e bairro (opcional)</label>
+                        <input id="requestLocation" name="location" type="text" maxlength="120" placeholder="Ex.: Campinas, Cambuí" autocomplete="address-level2">
+                    </div>
+                    <div>
+                        <label for="requestContact">Contato (opcional)</label>
+                        <input id="requestContact" name="contact" type="text" maxlength="160" placeholder="WhatsApp com DDD ou e-mail">
+                    </div>
+                </div>
+                <small class="field-hint">O contato preenchido ficará visível publicamente neste pedido.</small>
+                <p class="form-message" id="requestMessage" role="status"></p>
+                <button class="primary-button" type="submit">Publicar pedido</button>
+            </form>
+        </section>
+
+        <div class="social-columns">
+            <section class="feed-column" aria-labelledby="newPostTitle">
+                <div class="panel post-composer">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Compartilhe seu trabalho</p>
+                            <h2 id="newPostTitle">Postar um serviço</h2>
+                        </div>
+                    </div>
+                    <form id="serviceForm">
+                        <label for="serviceTitle">Nome do serviço</label>
+                        <input id="serviceTitle" name="title" type="text" placeholder="Ex.: Manutenção de computadores" required>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="servicePrice">Quanto você cobra?</label>
+                                <input id="servicePrice" name="price" type="number" min="0" step="0.01" placeholder="0,00" required>
+                            </div>
+                            <div>
+                                <label for="serviceCategory">Categoria</label>
+                                <select id="serviceCategory" name="category">
+                                    <option>Serviços gerais</option>
+                                    <option>Beleza</option>
+                                    <option>Tecnologia</option>
+                                    <option>Casa e manutenção</option>
+                                    <option>Aulas e consultoria</option>
+                                    <option>Artesanato e criação</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label for="serviceDescription">Descrição</label>
+                        <textarea id="serviceDescription" name="description" rows="3" placeholder="Explique o que está incluso no seu serviço..." required></textarea>
+
+                        <div class="form-grid">
+                            <div>
+                                <label for="serviceLocation">Cidade e bairro (opcional)</label>
+                                <input id="serviceLocation" name="location" type="text" maxlength="120" placeholder="Ex.: Campinas, Cambuí" autocomplete="address-level2">
+                            </div>
+                            <div>
+                                <label for="serviceContact">Contato (opcional)</label>
+                                <input id="serviceContact" name="contact" type="text" maxlength="160" placeholder="WhatsApp com DDD ou e-mail">
+                            </div>
+                        </div>
+                        <small class="field-hint">O contato preenchido ficará visível publicamente nesta oferta.</small>
+                        <label class="upload-field" for="serviceImage">
+                            <span class="upload-icon">+</span>
+                            <span><strong>Adicionar foto do serviço</strong><small>JPG, PNG ou WEBP</small></span>
+                            <input id="serviceImage" name="image" type="file" accept="image/*">
+                        </label>
+                        <div class="image-preview" id="imagePreview" aria-live="polite"></div>
+                        <p class="form-message" id="postMessage" role="status"></p>
+                        <button class="primary-button" type="submit">Publicar servi&ccedil;o</button>
+                    </form>
+                </div>
+
+                <div class="feed-heading">
+                    <div>
+                        <p class="eyebrow">Seu mural</p>
+                        <h2>Publicações da comunidade</h2>
+                    </div>
+                    <select id="feedFilter" aria-label="Filtrar publicações">
+                        <option value="all">Mais recentes</option>
+                        <option value="mine">Minhas publicações</option>
+                        <option value="recommended">Recomendados</option>
+                    </select>
+                </div>
+                <div id="feed" class="feed-list"></div>
+            </section>
+
+            <aside class="recommendations-column" aria-labelledby="recommendationsTitle">
+                <div class="panel recommendations-panel">
+                    <p class="eyebrow">Descubra na comunidade</p>
+                    <h2 id="recommendationsTitle">Recomendações para você</h2>
+                    <p class="muted-copy">Serviços publicados por outros usuários do Conecta.</p>
+                    <div id="recommendations" class="recommendation-list"></div>
+                </div>
+                <div class="panel community-note">
+                    <span class="note-symbol">◎</span>
+                    <div>
+                        <h3>Faça seu trabalho circular</h3>
+                        <p>Uma boa foto, um preço claro e uma descrição caprichada ajudam seu serviço a ser encontrado.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p><strong>Conecta+</strong> · Encontre e ofereça serviços na sua comunidade</p>
+    </footer>
+
+    <div class="modal-overlay" id="profileModal" aria-hidden="true">
+        <div class="profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+            <button class="modal-close" id="closeProfile" type="button" aria-label="Fechar personalização">&times;</button>
+            <p class="eyebrow">Seu perfil</p>
+            <h2 id="profileModalTitle">Personalizar perfil</h2>
+            <form id="profileForm">
+                <label class="profile-photo-picker" for="profileImage">
+                    <span class="profile-photo-preview" id="profilePhotoPreview">U</span>
+                    <span><strong>Escolher foto de perfil</strong><small>JPG, PNG ou WEBP</small></span>
+                    <input id="profileImage" name="image" type="file" accept="image/*">
+                </label>
+                <label for="profileNameInput">Nome</label>
+                <input id="profileNameInput" name="name" type="text" required>
+                <label for="profileBioInput">Bio</label>
+                <textarea id="profileBioInput" name="bio" rows="3" maxlength="140" placeholder="Fale um pouco sobre você e seu trabalho"></textarea>
+                <label for="profileColor">Cor do perfil</label>
+                <input id="profileColor" name="color" type="color" value="#004c94">
+                <label class="profile-photo-picker" for="coverImage">
+                    <span class="cover-preview" id="coverPreview">▰</span>
+                    <span><strong>Escolher imagem do banner</strong><small>JPG, PNG ou WEBP</small></span>
+                    <input id="coverImage" name="coverImage" type="file" accept="image/*">
+                </label>
+                <button class="primary-button"  type="submit">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/backend-config.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/usuario.js"></script>
+    <script src="js/pwa.js"></script>
+</body>
+</html>

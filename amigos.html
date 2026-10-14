@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigos | Conecta e + um pouco</title>
+    <meta name="description" content="Encontre pessoas, acompanhe pedidos de amizade e converse com seus amigos no Conecta.">
+    <meta name="theme-color" content="#004C94">
+    <link rel="icon" href="ico/download.ico" type="image/x-icon">    
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/amigos.css">
+</head>
+<body class="social-page">
+    <div class="global-loading" id="globalLoading" role="progressbar" aria-label="Carregando" aria-hidden="true"><span></span></div>
+    <script src="js/loading.js"></script>
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <nav class="social-nav" aria-label="Navegação principal">
+        <a class="brand-link" href="index.html"><img class="facebook-brand-image" src="img/download.jpg" alt="">Conecta<span>+</span></a>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema claro/escuro">
+                <span class="toggle-circle">🌙</span>
+            </button>
+            <a class="nav-home" href="index.html">Início</a>
+            <a class="nav-home" href="usuario.html">Meu perfil</a>
+        </div>
+    </nav>
+
+    <main class="friends-layout" id="conteudo">
+        <section class="friends-user-strip">
+            <span class="friends-user-avatar" id="friendsUserAvatar">U</span>
+            <div>
+                <p>Bem-vindo de volta</p>
+                <strong id="friendsUserName">Seu nome</strong>
+            </div>
+        </section>
+
+        <section class="friends-heading">
+            <div>
+                <p class="eyebrow">Sua rede</p>
+                <h1>Amigos <span id="friendsTotal">(0)</span> <b aria-hidden="true">→</b></h1>
+                <p>Encontre pessoas e acompanhe os serviços da sua comunidade.</p>
+            </div>
+            <label class="friends-search" for="friendSearch">
+                <span aria-hidden="true">⌕</span>
+                <input id="friendSearch" type="search" placeholder="Pesquisar pessoas" autocomplete="off">
+            </label>
+        </section>
+
+        <div class="friends-tabs" role="tablist">
+            <button class="friends-tab active" data-tab="amigos" type="button" role="tab" aria-selected="true">Amigos</button>
+            <button class="friends-tab" data-tab="mensagens" type="button" role="tab" aria-selected="false">Mensagens</button>
+        </div>
+
+        <div class="tab-panel" id="tab-amigos">
+            <section class="friends-columns">
+                <div class="panel friends-panel">
+                    <div class="friends-panel-heading">
+                        <div>
+                            <p class="eyebrow">Pessoas que você pode conhecer</p>
+                            <h2>Sugestões de amizade</h2>
+                        </div>
+                        <span class="friends-count" id="friendsCount">0</span>
+                    </div>
+                    <div class="friends-list" id="friendsList"></div>
+                </div>
+
+                <aside class="panel friends-info">
+                    <span class="friends-symbol">◎</span>
+                    <h2>Conecte-se</h2>
+                    <p>Adicione pessoas para acompanhar seus serviços e fortalecer sua rede no Conecta.</p>
+                    <a class="primary-button friends-profile-link" href="usuario.html">Ir para meu perfil</a>
+                </aside>
+            </section>
+
+            <section class="panel friends-panel confirmed-friends-panel" aria-labelledby="confirmedFriendsTitle">
+                <div class="friends-panel-heading">
+                    <div>
+                        <p class="eyebrow">Sua rede</p>
+                        <h2 id="confirmedFriendsTitle">Seus amigos</h2>
+                    </div>
+                    <span class="friends-count" id="confirmedFriendsCount">0</span>
+                </div>
+                <div class="friends-list" id="confirmedFriendsList"></div>
+            </section>
+
+            <section class="request-columns">
+                <div class="panel request-panel">
+                    <p class="eyebrow">Aguardando sua resposta</p>
+                    <h2>Solicitações de amizade</h2>
+                    <div id="receivedRequests" class="request-list"></div>
+                </div>
+                <div class="panel request-panel">
+                    <p class="eyebrow">Seus pedidos</p>
+                    <h2>Solicitações enviadas</h2>
+                    <div id="sentRequests" class="request-list"></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="tab-panel" id="tab-mensagens" hidden>
+            <p class="messages-status" id="messagesStatus" role="status" aria-live="polite" hidden></p>
+            <div class="messages-layout">
+                <div class="panel messages-contacts">
+                    <p class="eyebrow">Conversas</p>
+                    <h2>Seus amigos</h2>
+                    <div id="messagesContacts" class="messages-contact-list"></div>
+                </div>
+                <div class="panel messages-thread">
+                    <div class="messages-thread-header" id="messagesThreadHeader">
+                        <button class="messages-back" id="messagesBack" type="button" aria-label="Voltar para conversas" hidden>←</button>
+                        <p class="muted-copy">Selecione um amigo na lista para começar a conversar.</p>
+                    </div>
+                    <div class="messages-thread-body" id="messagesThread"></div>
+                    <form class="messages-form" id="messageForm" hidden>
+                        <input id="messageInput" type="text" placeholder="Escreva uma mensagem..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="send" maxlength="2000">
+                        <button class="primary-button" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p><strong>Conecta+</strong> · Encontre e ofereça serviços na sua comunidade</p>
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/backend-config.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/amigos.js"></script>
+    <script src="js/pwa.js"></script>
+</body>
+</html>
